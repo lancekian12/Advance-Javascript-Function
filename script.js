@@ -101,29 +101,32 @@
 
 // greetArr('Hello')('Lance Kian');
 
-const lufthansa = {
-  airline: 'Lufthansa',
-  iataCode: 'LH',
-  bookings: [],
-  book(flightNum, name) {
-    console.log(
-      `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
-    );
-    this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
-  },
-};
+// const lufthansa = {
+//   airline: 'Lufthansa',
+//   iataCode: 'LH',
+//   bookings: [],
+//   book(flightNum, name) {
+//     console.log(
+//       `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
+//     );
+//     this.bookings.push({
+//       flight: `${this.iataCode}${flightNum}`,
+//       name,
+//     });
+//   },
+// };
 
-lufthansa.book(239, 'Jonas Schemdtmann');
-lufthansa.book(635, 'John Smith');
-console.log(lufthansa);
+// lufthansa.book(239, 'Jonas Schemdtmann');
+// lufthansa.book(635, 'John Smith');
+// console.log(lufthansa);
 
-const eurowings = {
-  airline: 'Eurowings',
-  iataCode: 'EW',
-  bookings: [],
-};
+// const eurowings = {
+//   airline: 'Eurowings',
+//   iataCode: 'EW',
+//   bookings: [],
+// };
 
-const book = lufthansa.book;
+// const book = lufthansa.book;
 
 /* Does not work because book is become a function 
    expression and cannot read the "this" keyword
@@ -225,3 +228,58 @@ BONUS TEST DATA 2: [1, 5, 3, 9, 6, 1]
 
 GOOD LUCK 😀
 */
+
+// const poll = {
+//   question: 'What is your favourite programming language?',
+//   options: ['0: Javascript', '1: Python', '2: Rust', '3: C++'],
+//   // This generates [0, 0, 0, 0]. More in the next section
+//   answers: new Array(4).fill(0),
+//   registerNewAnswer: function () {
+//     const answer = Number(
+//       prompt(
+//         `${this.question}\n${this.options.join('\n')} \n (Write option number)`
+//       )
+//     );
+//     typeof answer === 'number' &&
+//       answer <= this.answers.length &&
+//       this.answers[answer]++;
+
+//     this.displayResults();
+//     this.displayResults('string');
+//   },
+//   displayResults: function (type = 'array') {
+//     if (type === 'array') {
+//       console.log(this.answers);
+//     } else if (typeof type === 'string') {
+//       console.log(`Poll results are ${this.answers.join(', ')}`);
+//     }
+//   },
+// };
+// poll.displayResults.call({ answers: [5, 2, 3] }, 'string');
+// poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] }, 'array');
+// document
+//   .querySelector('.poll')
+//   .addEventListener('click', poll.registerNewAnswer.bind(poll));
+
+// const runOnce = function () {
+//   console.log('This will never run again');
+// };
+// runOnce();
+
+// (function () {
+//   console.log('This will never run again');
+// })();
+// (() => console.log('This will never run again'))();
+
+const secureBooking = function () {
+  let passengerCount = 0;
+  return function () {
+    passengerCount++;
+    console.log(`${passengerCount} passengers`);
+  };
+};
+
+const booker = secureBooking();
+booker();
+booker();
+booker();
